@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>My test page</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <div class="container">
+      {% if bike %}
+      <p>You chose the {{bike.bike_model}}</p>
+        {% if frontwheel %}
+          <p>With a {{frontwheel.wheel_model}} in the front</p>
+          <p>Now Pick a back wheel</p>
+        {% elif backwheel %}
+          <p>With a {{backwheel.wheel_model}} in the back</p>
+          <p>Now pick a front wheel</p>
+        {% else %}
+          <p>Now, choose yourself some wheels</p>
+        {% endif %}
+      {% else %}
+        <p>Let's Pick some wheels</p>
+      {% endif %} 
+
+      
+      <div class="container">
+        <div class="row">
+
+          {% if wheelsets %}
+            <div class="col-md-4">
+              <h3>Wheelsets</h3>
+              <ul>
+                {% for wheels in wheelsets%}
+                  <li>
+                    <a href="wheels/{{wheels.id}}">{{ wheels.wheel_model}}</a>
+                  </li>
+                {% endfor %}
+                </ul>
+            </div>
+          {% endif %}
+
+          {% if front %}
+            <div class="col-md-4">
+              <h3>Front Wheels</h3>
+              <ul>
+                {% for wheel in front%}
+                  <li>
+                    <a href="front/{{wheel.id}}">{{ wheel.wheel_model}}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+
+          {% if back %}
+            <div class="col-md-4">
+              <h3>Rear Wheels</h3>
+              <ul>
+                {% for wheel in back%}
+                  <li>
+                    <a href="rear/{{wheel.id}}">{{ wheel.wheel_model}}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+
+        </div>
+      </div>
+
+      <ul>
+          {% for wheel in wheels%}
+            <li>
+
+            
+              {% if bike %}
+              <a href="wheels/{{wheel.id}}/">{{wheel.wheel_model}}</a>
+              
+              {% else %}
+              <a href="{% url 'wheel'  wheel.id %}">{{wheel.wheel_model}}</a>
+              {% endif %}
+            </li>
+          {% endfor %}
+          </ul>
+    </div>
+  </body>
+</html>
