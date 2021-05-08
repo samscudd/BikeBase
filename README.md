@@ -2,4 +2,4 @@ Installation at running the bike base is farely simple!  Begin by cloning this f
 
 python3 manage.py runserver
 
-From there, you should be able to sort items in the BikeBase!  To add an item, you will need to log in as an admin.  You can do this with name: admin, pw: test
+From there, simply open the URL and you should be able to sort items in the BikeBase!  To add an item, you will need to log in as an admin.  You can do this with name: admin, pw: test
