@@ -19,8 +19,9 @@
         <p>You chose the {{frontwheel.manufactuere}} {{frontwheel.wheel_model}} up front and the {{backwheel.manufacturer}} {{backwheel.wheel_model}} in the rear!</p>
       {% endif %}
       
-          <p>Let's pick a bike to go with those hoops!</p>  
-      <ul>
+      {% if bikes %}
+        <p>Let's pick a bike to go with those hoops!</p>  
+        <ul>
           {% for bike in bikes%}
             <li>
               {% if wheelset %}
@@ -30,10 +31,17 @@
               {% endif %}
             </li>
           {% endfor %}
-      </ul>
+        </ul>
+      {% else %}
+        <p>Oops, it looks like we don't have a bike that will work with those wheels!  Add one to the inventory!</p>
+          <a href="/admin/dBase/bikes/add/">
+            <button class="btn btn-primary">Add Bike</button>
+          </a>
+      {% endif %}  
       <a href='/dBase/'>
         <button class="btn btn-secondary">Reset</button>
       </a>
+
     </div>
   </body>
 </html>
