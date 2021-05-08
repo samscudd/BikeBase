@@ -15,12 +15,14 @@ urlpatterns = [
 
 	path('rearwheels/', views.back_wheels, name='rearwheels'),
 
-	path('bikes/<int:bike_id>/wheels/<int:wheel_id>/', views.bike_wheelset, name='complete1'),
-
 	path('wheelsets/<int:wheel_id>/', views.wheel, name='wheelset_complete'),
 
 	path('bikes/<int:bike_id>/<str:type>/<int:wheel_id>/', views.bike_wheel, name='halfway'),
 
-	path('bikes/<int:bike_id>/<str:type1>/<int:wheel1_id>/<str:type2>/<int:wheel2_id>/', views.completion, name='complete2')
+	path('bikes/<int:bike_id>/<str:type1>/<int:wheel1_id>/<str:type2>/<int:wheel2_id>/', views.completion, name='complete2'),
+
+	path('<str:type>/<int:wheel_id>/', views.secondWheel, name='wheelsfirst'),
+
+	path('<str:type1>/<int:wheel1_id>/<str:type2>/<int:wheel2_id>/', views.finalBike, name='wheelsfirst2')
 
 ]

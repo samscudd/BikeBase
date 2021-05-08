@@ -8,9 +8,9 @@
 
   </head>
   <body>
-    <div class="container">
+    <div class="container p-5">
       {% if bike %}
-      <p>You chose the {{bike.bike_model}}</p>
+      <p>You chose the {{bike.bike_model}}!  It needs {{bike.wheel_size}} wheels with {{bike.brakes_mounts}} brakes!</p>
         {% if frontwheel %}
           <p>With a {{frontwheel.wheel_model}} in the front</p>
           <p>Now Pick a back wheel</p>
@@ -21,7 +21,7 @@
           <p>Now, choose yourself some wheels</p>
         {% endif %}
       {% else %}
-        <p>Let's Pick some wheels</p>
+        <p>Let's Pick your second wheel!  To match the {{wheel.manufacturer}} {{wheel.wheel_model}}, it must be {{wheel.size}} with {{wheel.brakes}} brakes!</p>
       {% endif %} 
 
       
@@ -34,7 +34,7 @@
               <ul>
                 {% for wheels in wheelsets%}
                   <li>
-                    <a href="wheels/{{wheels.id}}">{{ wheels.wheel_model}}</a>
+                    <a href="front/{{wheels.id}}/rear/{{wheels.id}}">{{ wheels.wheel_model}}</a>
                   </li>
                 {% endfor %}
                 </ul>
@@ -66,7 +66,15 @@
               </ul>
             </div>
           {% endif %}
-
+          {% if wheelset %}
+          {% elif front %}
+          {% elif back %}
+          {% else %}
+            <p>Oops, it looks like we don't have a matching wheel in the system!  Add one to the inventory!</p>
+            <a href="/admin/dBase/wheels/add/">
+              <button class="btn btn-primary">Add Wheels</button>
+            </a>
+          {% endif %}
         </div>
       </div>
 
@@ -84,6 +92,10 @@
             </li>
           {% endfor %}
           </ul>
+          <a href='/dBase/'>
+            <button class="btn btn-secondary">Reset</button>
+          </a>
     </div>
+    
   </body>
 </html>

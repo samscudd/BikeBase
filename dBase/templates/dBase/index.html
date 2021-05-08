@@ -8,11 +8,12 @@
 
   </head>
   <body>
-    <div class="container">
+    <div class="container p-5">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
           {% if bike_list %}
           Pick a bike.
+          <h5 class="mt-3">Bikes</h5>
           <ul>
           {% for bikes in bike_list%}
             <li > 
@@ -34,29 +35,59 @@
 
         {% if wheel_list %}
 
-        <div class="col-md-6">
+        <div class="col-md-8">
           Or start with wheels.
-          <ul>
-            <li>
-              <a href='/dBase/wheelsets/'>Wheelsets</a>
-            </li>
-            <li>
-              <a href='/dBase/frontwheels/'>Front Wheels</a>
-            </li>
-            <li>
-              <a href='/dBase/rearwheels/'>Rear Wheels</a>
-            </li>
-          </ul>
+          <div class="container"></div>
+            <div class="row">
+                {% if wheelsets %}
+                <div class="col-md-4">
+                  <h5 class="mt-3">Wheelsets</h5>
+                  <ul>
+                    {% for wheels in wheelsets%}
+                      <li>
+                        <a href="wheels/{{wheels.id}}">{{ wheels.wheel_model}}</a>
+                      </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+              {% endif %}
 
+              {% if front %}
+                <div class="col-md-4">
+                  <h5 class="mt-3">Front Wheels</h5>
+                  <ul>
+                    {% for wheel in front%}
+                      <li>
+                        <a href="front/{{wheel.id}}">{{ wheel.wheel_model}}</a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              {% endif %}
+
+              {% if back %}
+                <div class="col-md-4">
+                  <h5 class="mt-3">Rear Wheels</h5>
+                  <ul>
+                    {% for wheel in back%}
+                      <li>
+                        <a href="rear/{{wheel.id}}">{{ wheel.wheel_model}}</a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              {% endif %}
+            </div>
+            <a href="/admin/dBase/wheels/add/">
+              <button class="btn btn-primary">Add Wheels</button>
+            </a>
+          </div>
         
       
           {% else %}
           <p>You don't have a complete set of wheels available!  Be sure to add a set before we start!</p>
           {% endif %}
 
-          <a href="/admin/dBase/wheels/add/">
-            <button class="btn btn-primary">Add Wheels</button>
-          </a>
         </div>  
       </div>
     </div>

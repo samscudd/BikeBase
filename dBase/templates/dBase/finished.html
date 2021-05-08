@@ -7,22 +7,27 @@
 
   </head>
   <body>
-    <p>You chose the {{bike.manufacturer}} {{bike.bike_model}}</p>
+    <div class="container p-5">
+      <p>You chose the {{bike.manufacturer}} {{bike.bike_model}}</p>
 
-    {% if frontwheel.id == backwheel.id %}
-    <p>with a {{frontwheel.manufacturer}} {{frontwheel.wheel_model}} wheelset</p>
+      {% if frontwheel.id == backwheel.id %}
+      <p>with a {{frontwheel.manufacturer}} {{frontwheel.wheel_model}} wheelset</p>
 
-    {% elif frontwheel %}
-    <p>with a {{frontwheel.manufacturer}} {{frontwheel.wheel_model}} in the front</p>
-    <p>and a {{backwheel.manufacturer}} {{backwheel.wheel_model}} in the back</p>
+      {% elif frontwheel %}
+      <p>with a {{frontwheel.manufacturer}} {{frontwheel.wheel_model}} in the front</p>
+      <p>and a {{backwheel.manufacturer}} {{backwheel.wheel_model}} in the back</p>
+      {% elif wheelset %}
 
-    {% else %}
-    <p>with a {{wheel1.manufacturer}} {{wheel1.wheel_model}} wheelset</p>
-    {% endif %}
-    
+      <p>with a {{wheelset.manufacturer}} {{wheelset.wheel_model}} wheelset</p>
 
-    <a href='/dBase/'>
-      <button class="btn btn-secondary">Build Another Bike</button>
-    </a>
+      {% else %}
+      
+      {% endif %}
+      
+
+      <a href='/dBase/'>
+        <button class="btn btn-secondary">Build Another Bike</button>
+      </a>
+    </div>
   </body>
 </html>
